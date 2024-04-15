@@ -1,11 +1,20 @@
 from datetime import datetime
+import pytest
+
+data = {}
 
 
 def pytest_configure():
     # exq after conf loading and be4 tuc exq
-    print(f"{datetime.now()} python开始执行")
+    data['start_time'] = datetime.now()
+    print(f"{data['start_time']} python开始执行")
 
 
-def pytest_unload_configure():
+def pytest_unconfigure():
     # exq b4 conf unloading and be4 tuc exq
-    print(f"{datetime.now()} python结束执行")
+    data['end_time'] = datetime.now()
+    print(f"{data['end_time']} python结束执行")
+
+    data['duration'] = data['end_time'] - data['start_time']
+
+    print(data)

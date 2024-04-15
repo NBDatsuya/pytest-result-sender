@@ -13,8 +13,8 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["pdm-pep517>=1.0"]
+build-backend = "pdm.pep517.api"
 
 [tool.pdm]
 distribution = true
@@ -44,3 +44,6 @@ exclude = '''
     | dist
 )/
 '''
+
+[project.entry-points.pytest11]
+result_log = "pytest_result_sender.plugin"
